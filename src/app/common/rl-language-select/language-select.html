@@ -1,0 +1,7 @@
+<div class="form-group">
+  <select class="form-control"
+    ng-model="$ctrl.language"
+    ng-change="$ctrl.update()">
+    <option ng-repeat="language in $ctrl.languages" ng-value="language">{{'languageSelect.' + language | translate }}</option>
+  </select>
+</div>

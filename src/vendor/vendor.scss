@@ -1,0 +1,22 @@
+// Fonts
+//
+$fa-font-path: '~font-awesome/fonts' !default;
+@import '~font-awesome/scss/font-awesome';
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i');
+
+// App & Bootstrap Variables
+//
+@import './src/styles/variables';
+
+// Bootstrap Framework
+//
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+// Bootstrap Overrides
+//
+@import './src/styles/bs-overrides';
+
+// App Global Styles
+//
+@import './src/styles/typography';
+@import './src/styles/utilities';

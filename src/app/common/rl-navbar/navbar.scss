@@ -1,0 +1,20 @@
+@import './src/styles/variables';
+
+$icon-padding: 10px;
+
+.navbar {
+  margin-bottom: 0;
+  border-bottom: 0;
+
+  .navbar-brand {
+    padding-top: $icon-padding;
+    padding-bottom: $icon-padding;
+
+    svg {
+      fill: $rl-primary-color;
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+}

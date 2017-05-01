@@ -1,0 +1,45 @@
+<nav class="rl-sidebar" ng-class="{'rl-sidebar--collapsed': $ctrl.collapsed}">
+
+  <ul class="nav nav-sidebar">
+    <li ui-sref-active="active"
+      ng-repeat="link in ::$ctrl.links | orderBy: 'order'"
+      ng-class="{'nav-sidebar__accordion': link.children.length > 0}">
+
+      <a
+        uib-tooltip="{{link.translateKey | translate}}"
+        tooltip-placement="right"
+        tooltip-append-to-body="true"
+        tooltip-enable="$ctrl.collapsed"
+        ui-sref="{{link.state}}">
+
+        <span class="fa fa-lg fa-angle-left fa__accordion hide-collapsed"
+          ng-if="link.children.length > 0"
+          ng-click="$ctrl.accordionToggle($event, $index)"
+          ng-class="{'fa-angle-down': !$ctrl.accordion[$index]}"></span>
+
+        <span class="fa fa-fw fa-lg" ng-class="link.icon" title="{{link.translateKey | translate}}"></span>
+        <span class="hide-collapsed">{{link.translateKey | translate}}</span>
+      </a>
+
+      <ul class="nav nav-sidebar__children collapse hide-collapsed" uib-collapse="$ctrl.accordion[$index]">
+        <li ui-sref-active="active"
+          ng-repeat="child in ::link.children | orderBy: 'order'">
+
+          <a ui-sref="{{child.state}}({{child.params}})">
+            <span class="fa fa-fw fa-lg"></span>
+            <span class="hide-collapsed">{{child.translateKey | translate}}</span>
+          </a>
+        </li>
+      </ul>
+
+    </li>
+  </ul>
+
+  <div class="sidebar-collapse">
+    <button class="btn btn-info btn-sm btn-block" ng-click="$ctrl.sidebarToggle()">
+      <span class="fa fa-bars"></span>
+      <span class="hide-collapsed">{{'sidebar.collapse' | translate}}</span>
+    </button>
+  </div>
+
+</nav>

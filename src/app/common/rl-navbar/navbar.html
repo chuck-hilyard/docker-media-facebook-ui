@@ -1,0 +1,44 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" ng-click="$ctrl.toggle()">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">
+        <svg>
+          <use xlink:href="/img/icons.svg#reachlocal-icon"></use>
+        </svg>
+      </span>
+    </div>
+
+    <div class="collapse navbar-collapse" ng-class="{'in': !$ctrl.collapsed}">
+      <ul class="nav navbar-nav">
+        <li ui-sref-active="active">
+          <a ui-sref="home" ng-click="$ctrl.collapse()" title="Home">
+            <i class="fa fa-home fa-lg"></i>
+          </a>
+        </li>
+        <li ng-class="{'active': $ctrl.campaignState()}">
+          <a ui-sref="campaigns" ng-click="$ctrl.collapse()" title="Campaigns">
+            <i class="fa fa-folder fa-lg"></i>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" uib-dropdown>
+          <a class="dropdown-toggle" uib-dropdown-toggle>
+            Hello &lt;User&gt; <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" uib-dropdown-menu>
+            <li><a>Menu Item</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>

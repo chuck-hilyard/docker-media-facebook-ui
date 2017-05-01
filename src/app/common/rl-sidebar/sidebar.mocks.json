@@ -1,0 +1,15 @@
+{
+  "links": [
+    {
+      "state": "foo"
+    },
+    {
+      "state": "bar"
+    }
+  ],
+  "state": {
+    "$current": {
+      "name": "foo"
+    }
+  }
+}
