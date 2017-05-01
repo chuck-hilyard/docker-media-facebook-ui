@@ -1,4 +1,4 @@
-# Angular Component Starter
+# Media Facebook UI
 
 JavaScript framework written for modular architecture. See [Angular Styleguide](https://github.com/toddmotto/angular-styleguide#modular-architecture) for more details.
 
