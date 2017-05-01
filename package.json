@@ -1,10 +1,10 @@
 {
-  "name": "search-campaigns-client",
+  "name": "media-facebook-ui",
   "version": "0.1.0",
-  "description": "Search campaigns client",
+  "description": "Facebook reporting UI",
   "repository": {
     "type": "git",
-    "url": "https://github.com/reachlocal/search-campaigns-client"
+    "url": "https://github.com/reachlocal/media-facebook-ui"
   },
   "scripts": {
     "build": "webpack --config ./webpack/production.config.js",
