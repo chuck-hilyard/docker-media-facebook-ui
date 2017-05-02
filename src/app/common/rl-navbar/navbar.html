@@ -18,12 +18,22 @@
       <ul class="nav navbar-nav">
         <li ui-sref-active="active">
           <a ui-sref="home" ng-click="$ctrl.collapse()" title="Home">
-            <i class="fa fa-home fa-lg"></i>
+            <i class="fa fa-lg fa-home"></i> {{$ctrl.state}}
           </a>
         </li>
-        <li ng-class="{'active': $ctrl.campaignState()}">
+        <li ui-sref-active="active">
+          <a ui-sref="advertisers" ng-click="$ctrl.collapse()" title="Advertisers">
+            <i class="fa fa-lg fa-users"></i>
+          </a>
+        </li>
+        <li ng-class="{'active': $ctrl.campaign}">
           <a ui-sref="campaigns" ng-click="$ctrl.collapse()" title="Campaigns">
-            <i class="fa fa-folder fa-lg"></i>
+            <i class="fa fa-lg fa-folder"></i>
+          </a>
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="offers" ng-click="$ctrl.collapse()" title="Offers">
+            <i class="fa fa-lg fa-file-text"></i>
           </a>
         </li>
       </ul>

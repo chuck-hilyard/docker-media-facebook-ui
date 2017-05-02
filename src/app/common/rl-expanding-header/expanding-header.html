@@ -5,10 +5,7 @@
       <h1><b>Campaign:</b> {{$ctrl.data.campaign.name}}</h1>
     </div>
     <div class="col-sm-4">
-      <button class="btn btn-default pull-right">
-        This Cycle: {{$ctrl.date | date:'shortDate'}} - {{$ctrl.date | date:'shortDate'}}
-        <span class="caret"></span>
-      </button>
+      <rl-date-range class="pull-right"></rl-date-range>
     </div>
   </div>
 

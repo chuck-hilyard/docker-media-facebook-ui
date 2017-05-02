@@ -5,7 +5,6 @@ class Controller {
   constructor() {
     'ngInject';
     this.open = false;
-    this.date = new Date();
   }
 
   toggle() {
