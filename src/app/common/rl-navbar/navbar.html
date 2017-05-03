@@ -7,18 +7,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <span class="navbar-brand">
+      <a class="navbar-brand" ui-sref="home">
         <svg>
           <use xlink:href="/img/icons.svg#reachlocal-icon"></use>
         </svg>
-      </span>
+      </a>
     </div>
 
-    <div class="collapse navbar-collapse" ng-class="{'in': !$ctrl.collapsed}">
+    <div class="navbar-collapse collapse" ng-class="{'in': !$ctrl.collapsed}">
       <ul class="nav navbar-nav">
         <li ui-sref-active="active">
           <a ui-sref="home" ng-click="$ctrl.collapse()" title="Home">
-            <i class="fa fa-lg fa-home"></i> {{$ctrl.state}}
+            <i class="fa fa-lg fa-home"></i>
           </a>
         </li>
         <li ui-sref-active="active">

@@ -2,22 +2,17 @@ import Template from './date-range.html';
 
 
 class Controller {
-  constructor($uibModal) {
+  constructor($uibModal, rlDateRangeService, Session) {
     'ngInject';
     this.$uibModal = $uibModal;
+    this.service = rlDateRangeService;
+    this.session = Session;
   }
 
   $onInit() {
-    this.range = {
-      name: 'This Cycle',
-      start: this.getStartDate(),
-      end: new Date()
-    };
-  }
-
-  getStartDate() {
-    let date = new Date();
-    return date.setDate(date.getDate() - 21);
+    if(!this.session.dateRange){
+      this.session.dateRange = this.service.ranges[0];
+    }
   }
 
   dateModal() {
@@ -25,19 +20,14 @@ class Controller {
       component: 'rlDateRangeModal',
       size: 'lg',
       resolve: {
-        start: () => {
-          return this.range.start;
-        },
-        end: () => {
-          return this.range.end;
-        }
+        range: () => this.session.dateRange,
+        ranges: () => this.service.ranges
       }
     });
 
     instance.result
       .then((response) => {
-        this.range.start = angular.copy(response.start);
-        this.range.end = angular.copy(response.end);
+        this.session.dateRange = angular.copy(response.range);
       })
       .catch(() => {
         // Prevent unhandled rejection error
@@ -48,8 +38,5 @@ class Controller {
 
 export default {
   template: Template,
-  controller: Controller,
-  bindings: {
-    data: '<'
-  }
+  controller: Controller
 };

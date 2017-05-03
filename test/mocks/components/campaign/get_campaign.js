@@ -25,7 +25,22 @@ export default angular
           offerName: 'Search Engine Marketing',
           offerId: 1873,
           category: 'Home & Home Improvement',
-          subCategory: 'Plumbing'
+          subCategory: 'Plumbing',
+          cycles: [
+            {
+              start: new Date(2017, 0, 1),
+              end: new Date(2017, 0, 31),
+            },
+            {
+              start: new Date(2017, 1, 1),
+              end: new Date(2017, 1, 28)
+            },
+            {
+              start: new Date(2017, 2, 1),
+              end: new Date(2017, 2, 31)
+            }
+          ]
+
         },
         offer: {
           oid: 63258,
