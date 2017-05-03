@@ -9,16 +9,25 @@ class NavbarController {
     this.$state = $state;
   }
 
-  // Checks if state is for campaigns
-  // @returns bool
+  // Close menu after clicking link
+  // @return void
   //
-  campaignState() {
-    return this.$state.current.name.indexOf('campaign') > -1;
+  collapse() {
+    this.collapsed = true;
   }
 
   // Toggle menu in mobile view
+  // @return void
+  //
   toggle() {
     this.collapsed = !this.collapsed;
+  }
+
+  // Campaign state checker
+  // @return bool
+  //
+  get campaign() {
+    return this.$state.current.name.indexOf('campaign') > -1;
   }
 
 }

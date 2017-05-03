@@ -1,0 +1,33 @@
+@import './src/styles/variables';
+
+.rl-date-range-modal {
+  .col-list-ranges {
+    margin-top: -($grid-gutter-width / 2);
+    margin-bottom: -($grid-gutter-width / 2);
+    padding: ($grid-gutter-width / 2) 0 0 0 ;
+    border-right: solid 1px $border-color;
+
+    a {
+      display: block;
+      padding: 5px ($grid-gutter-width / 2);
+      color: $text-color;
+      cursor: pointer;
+
+      &.active,
+      &:hover {
+        background-color: $rl-medium-blue-gray;
+        color: $rl-white;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .datepicker {
+    display: inline-block;
+    margin-top: $grid-gutter-width;
+
+    div:focus {
+      outline: 0;
+    }
+  }
+}

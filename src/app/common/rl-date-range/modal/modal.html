@@ -1,0 +1,56 @@
+<div class="rl-date-range-modal">
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-sm-3 col-list-ranges">
+        <ul class="list-unstyled">
+          <li>
+            <a class="active">This Cycle</a>
+          </li>
+          <li>
+            <a>Last Cycle</a>
+          </li>
+          <li>
+            <a>Last 7 Days</a>
+          </li>
+          <li>
+            <a>Last 14 Days</a>
+          </li>
+          <li>
+            <a>Last 30 Days</a>
+          </li>
+          <li>
+            <a>This week</a>
+          </li>
+          <li>
+            <a>Last week</a>
+          </li>
+          <li>
+            <a>This month</a>
+          </li>
+          <li>
+            <a>Last month</a>
+          </li>
+          <li>
+            <a>All time</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-9">
+        <div class="row">
+          <div class="col-sm-6 text-center">
+            <div class="datepicker" uib-datepicker ng-model="$ctrl.start" datepicker-options="$ctrl.options.start"></div>
+          </div>
+          <div class="col-sm-6 text-center">
+            <div class="datepicker" uib-datepicker ng-model="$ctrl.end" datepicker-options="$ctrl.options.end"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    
+    <button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.update()">Update</button>
+  </div>
+</div>

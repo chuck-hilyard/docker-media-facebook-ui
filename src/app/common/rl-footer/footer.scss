@@ -1,0 +1,10 @@
+@import './src/styles/variables';
+
+.navbar-footer {
+  min-height: 30px;
+  font-size: $font-size-small;
+
+  .navbar-text {
+    margin: 10px;
+  }
+}
