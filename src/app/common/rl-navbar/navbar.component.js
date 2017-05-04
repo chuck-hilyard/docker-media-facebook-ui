@@ -23,11 +23,25 @@ class NavbarController {
     this.collapsed = !this.collapsed;
   }
 
+  // Advertiser state checker
+  // @return bool
+  //
+  get advertiser() {
+    return this.$state.current.name.indexOf('advertiser') > -1;
+  }
+
   // Campaign state checker
   // @return bool
   //
   get campaign() {
     return this.$state.current.name.indexOf('campaign') > -1;
+  }
+
+  // Order state checker
+  // @return bool
+  //
+  get order() {
+    return this.$state.current.name.indexOf('order') > -1;
   }
 
 }

@@ -2,10 +2,11 @@ import template from './campaign.html';
 
 
 class Controller {
-  constructor(CampaignSidebar) {
+  constructor(CampaignSidebar, DateRangeService) {
     'ngInject';
-    this.sidebar = CampaignSidebar;
+    this.dateRanges = DateRangeService.ranges;
     this.header = {};
+    this.sidebar = CampaignSidebar;
   }
 
   $onInit() {
@@ -100,8 +101,6 @@ class Controller {
       ]
     };
   }
-
-
 
 }
 

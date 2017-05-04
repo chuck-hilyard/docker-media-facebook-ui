@@ -16,10 +16,16 @@ class Controller {
     this.ranges = angular.copy(this.resolve.ranges);
     this.options = {
       start: {
+        customClass: (data) => {
+          return this.customClass(data);
+        },
         maxDate: this.range.end,
         showWeeks: false
       },
       end: {
+        customClass: (data) => {
+          return this.customClass(data);
+        },
         minDate: this.range.start,
         maxDate: new Date(),
         showWeeks: false
@@ -29,6 +35,23 @@ class Controller {
 
   cancel() {
     this.dismiss();
+  }
+
+  customClass(data) {
+    let cycles = this.resolve.cycles;
+    if(angular.isDefined(cycles) && data.mode === 'day') {
+      let dayToCheck = new Date(data.date).setHours(0,0,0,0);
+      let match = cycles.find((cycle) => {
+        let start = new Date(cycle.start).setHours(0,0,0,0) === dayToCheck;
+        let end = new Date(cycle.end).setHours(0,0,0,0) === dayToCheck;
+        return start || end;
+      });
+      if (angular.isDefined(match)) {
+        return 'bookend';
+      }
+    }
+    return '';
+    
   }
 
   getRangeName() {

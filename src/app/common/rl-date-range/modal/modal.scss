@@ -25,6 +25,15 @@
     }
   }
 
+  .bookend span {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    background-color: $rl-primary-color;
+    border-radius: 9px;
+    color: $text-color;
+  }
+
   .modal-footer span {
     margin-right: ($grid-gutter-width / 2);
   }

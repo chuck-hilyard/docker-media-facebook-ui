@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="page-header">
-          <h1>Campaigns</h1>
+          <h1>Advertisers</h1>
         </div>
       </div>
     </div>
@@ -28,16 +28,8 @@
                   <input type="checkbox">
                 </th>
                 <th>
-                  Campaign<br>
-                  (Master Campaign ID)
-                </th>
-                <th>
                   Advertiser<br>
                   (Master Advertiser ID)
-                </th>
-                <th>
-                  Offer<br>
-                  (Offer ID)
                 </th>
                 <th>
                   Category
@@ -46,25 +38,13 @@
                   Sub Category
                 </th>
                 <th>
-                  Status
-                </th>
-                <th>
                   Budget
                 </th>
               </tr>
               <tr>
                 <th>&nbsp;</th>
                 <th>
-                  Totals - all 2,166,458 campaigns
-                </th>
-                <th>
-                  --
-                </th>
-                <th>
-                  --
-                </th>
-                <th>
-                  --
+                  Totals - all 2,166,458 advertisers
                 </th>
                 <th>
                   --
@@ -82,17 +62,9 @@
                 <td>
                   <input type="checkbox">
                 </td>
-                <td class="campaign">
-                  <a ui-sref="campaign.detail({mcid:123456})">My Campaign {{$index}}</a><br>
-                  MCID: 123456
-                </td>
                 <td class="advertiser">
-                  <a ui-sref="advertiser.detail({maid:123456})"">My Advertiser {{$index}}</a><br>
+                  <a ui-sref="advertiser.detail({maid:123456})">My Advertiser {{$index}}</a><br>
                   MAID: 123456
-                </td>
-                <td class="offer">
-                  ReachOffer<br>
-                  OID: 1234
                 </td>
                 <td class="sategory">
                   Stuff
@@ -100,15 +72,11 @@
                 <td class="sub-category">
                   Things
                 </td>
-                <td class="status">
-                  Running
-                </td>
                 <td class="budget">
                   $7,777
                 </td>
               </tr>
             </tbody>
-
           </table>
         </div>
       </div>

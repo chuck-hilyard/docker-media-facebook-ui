@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="page-header">
-          <h1>Campaigns</h1>
+          <h1>Orders</h1>
         </div>
       </div>
     </div>
@@ -28,52 +28,28 @@
                   <input type="checkbox">
                 </th>
                 <th>
-                  Campaign<br>
-                  (Master Campaign ID)
+                  Order
+                </th>
+                <th>
+                  Status
                 </th>
                 <th>
                   Advertiser<br>
                   (Master Advertiser ID)
                 </th>
                 <th>
-                  Offer<br>
-                  (Offer ID)
+                  Business<br>
+                  (Business ID)
                 </th>
                 <th>
-                  Category
+                  Created By<br>
+                  (Business User ID)
                 </th>
                 <th>
-                  Sub Category
+                  Order Type
                 </th>
                 <th>
-                  Status
-                </th>
-                <th>
-                  Budget
-                </th>
-              </tr>
-              <tr>
-                <th>&nbsp;</th>
-                <th>
-                  Totals - all 2,166,458 campaigns
-                </th>
-                <th>
-                  --
-                </th>
-                <th>
-                  --
-                </th>
-                <th>
-                  --
-                </th>
-                <th>
-                  --
-                </th>
-                <th>
-                  --
-                </th>
-                <th>
-                  $2,567,023
+                  Total
                 </th>
               </tr>
             </thead>
@@ -82,28 +58,28 @@
                 <td>
                   <input type="checkbox">
                 </td>
-                <td class="campaign">
-                  <a ui-sref="campaign.detail({mcid:123456})">My Campaign {{$index}}</a><br>
-                  MCID: 123456
+                <td class="order">
+                  <a ui-sref="order.detail({oid:123456})">123456</a>
+                </td>
+                <td class="status">
+                  Approved
                 </td>
                 <td class="advertiser">
                   <a ui-sref="advertiser.detail({maid:123456})"">My Advertiser {{$index}}</a><br>
                   MAID: 123456
                 </td>
-                <td class="offer">
-                  ReachOffer<br>
-                  OID: 1234
+                <td class="business">
+                  Business Co.<br>
+                  <i>1234</i>
                 </td>
-                <td class="sategory">
-                  Stuff
+                <td class="created-by">
+                  Jesse Jordan<br>
+                  <i>007</i>
                 </td>
-                <td class="sub-category">
-                  Things
+                <td class="type">
+                  New
                 </td>
-                <td class="status">
-                  Running
-                </td>
-                <td class="budget">
+                <td class="total">
                   $7,777
                 </td>
               </tr>

@@ -13,13 +13,17 @@
       </div>
       <div class="col-sm-9">
         <div class="row">
-          <div class="col-sm-6 text-center">
+          <div class="col-md-6 text-center">
             <div class="datepicker" uib-datepicker ng-model="$ctrl.range.start" datepicker-options="$ctrl.options.start"></div>
           </div>
-          <div class="col-sm-6 text-center">
+          <div class="col-md-6 text-center">
             <div class="datepicker" uib-datepicker ng-model="$ctrl.range.end" datepicker-options="$ctrl.options.end"></div>
           </div>
         </div>
+        <br>
+        <em class="bookend" ng-if="$ctrl.resolve.cycles">
+          <span>&nbsp;</span> Indicates cycle start/end.
+        </em>
       </div>
     </div>
   </div>

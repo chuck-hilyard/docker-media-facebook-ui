@@ -2,16 +2,26 @@ import Template from './date-range.html';
 
 
 class Controller {
-  constructor($uibModal, rlDateRangeService, Session) {
+  constructor($uibModal) {
     'ngInject';
     this.$uibModal = $uibModal;
-    this.service = rlDateRangeService;
-    this.session = Session;
   }
 
   $onInit() {
-    if(!this.session.dateRange){
-      this.session.dateRange = this.service.ranges[0];
+    console.log('init', this);
+    if(angular.isUndefined(this.ranges)) {
+      throw new Error('Date range is required.');
+    }
+    this.dateRanges = angular.copy(this.ranges);
+    if(angular.isDefined(this.cycles)) {
+      let thisCycle = angular.copy(this.cycles[0]);
+      thisCycle.name = 'This Cycle';
+      let lastCycle = angular.copy(this.cycles[1]);
+      lastCycle.name = 'Last Cycle';
+      this.dateRanges.unshift(thisCycle, lastCycle);
+    }
+    if(!this.range){
+      this.dateRange = angular.copy(this.dateRanges[0]);
     }
   }
 
@@ -20,14 +30,15 @@ class Controller {
       component: 'rlDateRangeModal',
       size: 'lg',
       resolve: {
-        range: () => this.session.dateRange,
-        ranges: () => this.service.ranges
+        cycles: () => this.cycles,
+        range: () => this.dateRange,
+        ranges: () => this.dateRanges
       }
     });
 
     instance.result
       .then((response) => {
-        this.session.dateRange = angular.copy(response.range);
+        this.dateRange = angular.copy(response.range);
       })
       .catch(() => {
         // Prevent unhandled rejection error
@@ -38,5 +49,10 @@ class Controller {
 
 export default {
   template: Template,
-  controller: Controller
+  controller: Controller,
+  bindings: {
+    cycles: '<',
+    range: '<',
+    ranges: '<'
+  }
 };

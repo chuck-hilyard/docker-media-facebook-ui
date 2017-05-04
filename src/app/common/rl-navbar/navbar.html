@@ -21,7 +21,7 @@
             <i class="fa fa-lg fa-home"></i>
           </a>
         </li>
-        <li ui-sref-active="active">
+         <li ng-class="{'active': $ctrl.advertiser}">
           <a ui-sref="advertisers" ng-click="$ctrl.collapse()" title="Advertisers">
             <i class="fa fa-lg fa-users"></i>
           </a>
@@ -31,8 +31,8 @@
             <i class="fa fa-lg fa-folder"></i>
           </a>
         </li>
-        <li ui-sref-active="active">
-          <a ui-sref="offers" ng-click="$ctrl.collapse()" title="Offers">
+        <li ng-class="{'active': $ctrl.order}">
+          <a ui-sref="orders" ng-click="$ctrl.collapse()" title="Orders">
             <i class="fa fa-lg fa-file-text"></i>
           </a>
         </li>
