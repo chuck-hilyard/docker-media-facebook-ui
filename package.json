@@ -35,7 +35,6 @@
     "file-loader": "^0.10.1",
     "font-awesome": "^4.7.0",
     "html-loader": "^0.4.3",
-    "moment": "^2.18.1",
     "ng-annotate-loader": "^0.2.0",
     "node-sass": "^4.5.0",
     "sass-loader": "^6.0.3",

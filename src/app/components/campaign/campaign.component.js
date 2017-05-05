@@ -13,6 +13,10 @@ class Controller {
     this.setHeader();
   }
 
+  getDateRange(dateRange) {
+    this.dateRange = dateRange;
+  }
+
   setHeader() {
     this.header = {
       type: 'Campaign',

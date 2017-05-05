@@ -8,7 +8,6 @@ class Controller {
   }
 
   $onInit() {
-    console.log('init', this);
     if(angular.isUndefined(this.ranges)) {
       throw new Error('Date range is required.');
     }
@@ -22,6 +21,7 @@ class Controller {
     }
     if(!this.range){
       this.dateRange = angular.copy(this.dateRanges[0]);
+      this.callback({dateRange: this.dateRange});
     }
   }
 
@@ -39,6 +39,7 @@ class Controller {
     instance.result
       .then((response) => {
         this.dateRange = angular.copy(response.range);
+        this.callback({dateRange: this.dateRange});
       })
       .catch(() => {
         // Prevent unhandled rejection error
@@ -51,6 +52,7 @@ export default {
   template: Template,
   controller: Controller,
   bindings: {
+    callback: '&',
     cycles: '<',
     range: '<',
     ranges: '<'

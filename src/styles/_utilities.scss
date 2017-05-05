@@ -1,3 +1,9 @@
+@import 'variables';
+
 div {
   position: relative;
+}
+
+.row-striped {
+  background-color: $rl-bright-white;
 }
