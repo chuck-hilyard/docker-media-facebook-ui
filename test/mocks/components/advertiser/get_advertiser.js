@@ -10,7 +10,7 @@ export default angular
     'ngInject';
 
     $httpBackend
-      .when('GET', /\/advertiser\/123456/)
+      .when('GET', /\/advertiser\/123456$/)
       .respond({
         advertiser: {
           name: 'JJ\'s Plumbing',
@@ -18,7 +18,7 @@ export default angular
           caid: 56978,
           business: 14785
         },
-        offer: {
+        order: {
           oid: 123456,
           payment: 'Credit Card',
           budget: 1500,

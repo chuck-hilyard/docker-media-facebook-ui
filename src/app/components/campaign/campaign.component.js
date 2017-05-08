@@ -2,19 +2,17 @@ import template from './campaign.html';
 
 
 class Controller {
-  constructor(CampaignSidebar, DateRangeService) {
+  constructor(CampaignSidebar) {
     'ngInject';
-    this.dateRanges = DateRangeService.ranges;
     this.header = {};
     this.sidebar = CampaignSidebar;
   }
 
   $onInit() {
+    this.advertiser = this.campaignRequest.data.advertiser;
+    this.campaign = this.campaignRequest.data.campaign;
+    this.order = this.campaignRequest.data.order;
     this.setHeader();
-  }
-
-  getDateRange(dateRange) {
-    this.dateRange = dateRange;
   }
 
   setHeader() {
@@ -23,27 +21,27 @@ class Controller {
       title: 'My Campaign 01',
       subType: 'Advertiser',
       subTitle: 'JJ\'s Plumbing',
-      subLink: `advertiser.detail({maid:${this.campaign.data.advertiser.maid}})`,
+      subLink: `advertiser.detail({maid:${this.advertiser.maid}})`,
       columns: [
         {
           title: 'Advertiser',
           rows: [
             {
               name: 'Advertiser Name',
-              value: this.campaign.data.advertiser.name,
-              link: `advertiser.detail({maid:${this.campaign.data.advertiser.maid}})`
+              value: this.advertiser.name,
+              link: `advertiser.detail({maid:${this.advertiser.maid}})`
             },
             {
               name: 'Master Advertiser ID',
-              value: this.campaign.data.advertiser.maid
+              value: this.advertiser.maid
             },
             {
               name: 'Current Advertiser ID',
-              value: this.campaign.data.advertiser.caid,
+              value: this.advertiser.caid,
             },
             {
               name: 'Advertiser Business',
-              value: this.campaign.data.advertiser.business
+              value: this.advertiser.business
             }
           ]
         },
@@ -52,27 +50,27 @@ class Controller {
           rows: [
             {
               name: 'Master Campaign ID',
-              value: this.campaign.data.campaign.mcid
+              value: this.campaign.mcid
             },
             {
               name: 'Current Campaign ID',
-              value: this.campaign.data.campaign.ccid
+              value: this.campaign.ccid
             },
             {
               name: 'Offer Name',
-              value: this.campaign.data.campaign.offerName
+              value: this.campaign.offerName
             },
             {
               name: 'Offer ID',
-              value: this.campaign.data.campaign.offerId
+              value: this.campaign.offerId
             },
             {
               name: 'Business Category',
-              value: this.campaign.data.campaign.category
+              value: this.campaign.category
             },
             {
               name: 'Business Sub Category',
-              value: this.campaign.data.campaign.subCategory
+              value: this.campaign.subCategory
             }
           ]
         },
@@ -81,24 +79,24 @@ class Controller {
           rows: [
             {
               name: 'Order ID',
-              value: this.campaign.data.offer.oid,
-              link: `order.detail({oid:${this.campaign.data.offer.oid}})`
+              value: this.order.oid,
+              link: `order.detail({oid:${this.order.oid}})`
             },
             {
               name: 'Payment Type',
-              value: this.campaign.data.offer.payment
+              value: this.order.payment
             },
             {
               name: 'Current Budget',
-              value: this.campaign.data.offer.budget
+              value: this.order.budget
             },
             {
               name: 'Current Cycle',
-              value: this.campaign.data.offer.cycle
+              value: this.order.cycle
             },
             {
               name: 'Auto Renew Type',
-              value: this.campaign.data.offer.renew
+              value: this.order.renew
             }
           ]
         }
@@ -112,6 +110,6 @@ export default {
   template: template,
   controller: Controller,
   bindings: {
-    campaign: '<'
+    campaignRequest: '<'
   }
 };

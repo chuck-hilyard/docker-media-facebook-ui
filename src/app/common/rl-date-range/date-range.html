@@ -1,5 +1,4 @@
 <button class="btn btn-default btn-date-range" ng-click="$ctrl.dateModal()">
-  <b ng-if="$ctrl.dateRange.name">{{$ctrl.dateRange.name}}:</b>
-  {{$ctrl.dateRange.start | date:'yyyy/MM/dd'}} &mdash; {{$ctrl.dateRange.end | date:'yyyy/MM/dd'}}<br>
-  <small class="text-muted">Note: Does not include today's data</small>
+  <b ng-if="$ctrl.session.dateRange.name">{{$ctrl.session.dateRange.name}}:</b>
+  {{$ctrl.session.dateRange.start | date:'yyyy/MM/dd'}} &mdash; {{$ctrl.session.dateRange.end | date:'yyyy/MM/dd'}}<br>
 </button>

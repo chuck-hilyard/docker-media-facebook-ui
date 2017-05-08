@@ -1,6 +1,7 @@
 class Session {
   constructor() {
     'ngInject';
+    this.dateRange = {};
   }
 }
 

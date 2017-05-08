@@ -68,6 +68,19 @@
 <div class="row" style="padding: 10px 0 30px;">
   <div class="col-xs-12">
     <h3>Trend Graph</h3>
+    <div class="row">
+      <div class="col-sm-2">
+        <select class="form-control">
+          <option>Impression</option>
+        </select>
+      </div>
+      <div class="col-sm-2">
+        <select class="form-control">
+          <option>Amount Spent</option>
+        </select>
+      </div>
+    </div>
+    <br>
     <canvas class="chart-bar"
       chart-data="$ctrl.trendChart.data"
       chart-labels="$ctrl.trendChart.labels"
@@ -78,63 +91,57 @@
 </div>
 
 <div class="row row-striped" style="padding: 30px 0 10px;">
-  <div class="col-xs-12">
-
-    <div class="row">
-      <div class="col-sm-9">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Demographics</h3>
-          </div>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-2 col-xs-6 text-center gender-label">
-                <span class="fa fa-5x fa-female"></span>
-                <h2>34&#37;</h2>
-                <h5>16,143</h5>
-              </div>
-              <div class="col-md-2 col-md-push-8 col-xs-6 text-center gender-label">
-                <span class="fa fa-5x fa-male"></span>
-                <h2>60&#37;</h2>
-                <h5>30,421</h5>
-              </div>
-              <div class="col-md-8 col-md-pull-2 demographic-chart">
-                <canvas class="chart-horizontal-bar"
-                  chart-data="$ctrl.demographicChart.data"
-                  chart-labels="$ctrl.demographicChart.labels"
-                  chart-dataset-override="$ctrl.demographicChart.override"
-                  chart-options="$ctrl.demographicChart.options">
-                </canvas>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="col-sm-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Demographics</h3>
       </div>
-      <div class="col-sm-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Mobile vs. Desktop</h3>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-2 col-xs-6 text-center gender-label">
+            <span class="fa fa-5x fa-female"></span>
+            <h2>34&#37;</h2>
+            <h5>16,143</h5>
           </div>
-          <div class="panel-body device-chart">
-            <canvas class="chart-doughnut"
-              chart-data="$ctrl.deviceChart.data"
-              chart-labels="$ctrl.deviceChart.labels"
-              chart-colors="$ctrl.deviceChart.colors"
-              chart-dataset-override="$ctrl.deviceChart.override"
-              chart-options="$ctrl.deviceChart.options">
+          <div class="col-md-2 col-md-push-8 col-xs-6 text-center gender-label">
+            <span class="fa fa-5x fa-male"></span>
+            <h2>60&#37;</h2>
+            <h5>30,421</h5>
+          </div>
+          <div class="col-md-8 col-md-pull-2 demographic-chart">
+            <canvas class="chart-horizontal-bar"
+              chart-data="$ctrl.demographicChart.data"
+              chart-labels="$ctrl.demographicChart.labels"
+              chart-dataset-override="$ctrl.demographicChart.override"
+              chart-options="$ctrl.demographicChart.options">
             </canvas>
           </div>
-          <ul class="list-group">
-            <li class="list-group-item" ng-repeat="label in $ctrl.deviceChart.labels">
-              <b class="pull-right">{{$ctrl.deviceChart.data[$index]}}&#37;</b>
-              <span class="fa fa-circle" ng-style="{'color': $ctrl.deviceChart.colors[$index]}"></span>
-              {{label}}:
-            </li>
-          </ul>
-
         </div>
       </div>
     </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Mobile vs. Desktop</h3>
+      </div>
+      <div class="panel-body device-chart">
+        <canvas class="chart-doughnut"
+          chart-data="$ctrl.deviceChart.data"
+          chart-labels="$ctrl.deviceChart.labels"
+          chart-colors="$ctrl.deviceChart.colors"
+          chart-dataset-override="$ctrl.deviceChart.override"
+          chart-options="$ctrl.deviceChart.options">
+        </canvas>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="label in $ctrl.deviceChart.labels">
+          <b class="pull-right">{{$ctrl.deviceChart.data[$index]}}&#37;</b>
+          <span class="fa fa-circle" ng-style="{'color': $ctrl.deviceChart.colors[$index]}"></span>
+          {{label}}:
+        </li>
+      </ul>
 
+    </div>
   </div>
 </div>

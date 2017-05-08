@@ -3,15 +3,34 @@ import template from './detail.html';
 
 class Controller {
 
-  constructor($filter) {
+  constructor($filter, $http, CampaignDetailService, Session) {
     'ngInject';
     this.$filter = $filter;
+    this.$http = $http;
+    this.session = Session;
+    this.service = CampaignDetailService;
+    this.trendParams = this.setTrendParams();
+
     this.trendChart = {};
     this.setTrendChart();
+    console.log(this.trendChart);
     this.demographicChart = {};
     this.setDemographicChart();
     this.deviceChart = {};
     this.setDeviceChart();
+  }
+
+  $onInit() {
+    this.campaign = this.campaignRequest.data.campaign;
+
+    this.service.getTrendData(this.campaign.mcid, this.trendParams)
+      // .then((response) => {
+
+      // })
+      // .catch((error) => {
+
+      // });
+
   }
 
   randomNumber(multiplier, roundMethod) {
@@ -26,12 +45,21 @@ class Controller {
     }
   }
 
+  setTrendParams() {
+    let start = this.$filter('date')(this.session.dateRange.start, 'yyyy-MM-dd');
+    let end = this.$filter('date')(this.session.dateRange.end, 'yyyy-MM-dd')
+    return {
+      breakdown: 'days',
+      dates: `${start},${end}`,
+      metrics: 'impressions,spend'
+    };
+  }
+
   setTrendChart() {
     let filter = this.$filter;
     let chart = this.trendChart;
     let impressionsColor = '#f67002';
     let googleColor = '#bdd964';
-    let bingColor = '#d7e8a2';
 
     let mockData = [];
     for(let i = 1; i <= 28; i++) {
@@ -45,7 +73,7 @@ class Controller {
       mockData.push(item);
     }
 
-    chart.colors = [impressionsColor, googleColor, bingColor];
+    chart.colors = [impressionsColor, googleColor];
 
     chart.labels = mockData.map((object) => {
       return object.date;
@@ -56,9 +84,6 @@ class Controller {
       }),
       mockData.map((object) => {
         return object.googleSpend;
-      }),
-      mockData.map((object) => {
-        return object.bingSpend;
       })
     ];
 
@@ -73,20 +98,12 @@ class Controller {
         fill: false
       },
       {
-        label: 'Google Spend',
+        label: 'Amount Spent',
         yAxisID: 'spend',
         stack: 'spend',
         backgroundColor: googleColor,
         hoverBackgroundColor: googleColor,
         hoverBorderColor: googleColor
-      },
-      {
-        label: 'Bing Spend',
-        yAxisID: 'spend',
-        stack: 'spend',
-        backgroundColor: bingColor,
-        hoverBackgroundColor: bingColor,
-        hoverBorderColor: bingColor
       }
     ];
 
@@ -155,14 +172,10 @@ class Controller {
           label: (tooltipItem, data) => {
             let index = tooltipItem.index;
             let impressions = data.datasets[0].data[index];
-            let google = filter('currency')(data.datasets[1].data[index]);
-            let bing = filter('currency')(data.datasets[2].data[index]);
-            let total = filter('currency')(data.datasets[1].data[index] + data.datasets[2].data[index]);
+            let spend = filter('currency')(data.datasets[1].data[index]);
             let output = [
               `Impressions: ${impressions}`,
-              `Google: ${google}`,
-              `Bing: ${bing}`,
-              `Total Spend: ${total}`
+              `Amount Spent: ${spend}`
             ];
             if (mockData[index].event) {
               output.push(`CYCLE START/END`);
@@ -288,5 +301,8 @@ class Controller {
 
 export default {
   template: template,
-  controller: Controller
+  controller: Controller,
+  bindings: {
+    campaignRequest: '<'
+  }
 };

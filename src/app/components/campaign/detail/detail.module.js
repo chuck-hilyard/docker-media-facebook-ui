@@ -1,6 +1,7 @@
 import uiRouter from 'angular-ui-router';
 import chartJs from 'angular-chart.js';
 import component from './detail.component';
+import service from './detail.service';
 import './detail.scss';
 
 export default angular
@@ -17,4 +18,5 @@ export default angular
       });
   })
   .component('campaign.detail', component)
+  .service('CampaignDetailService', service)
   .name;
