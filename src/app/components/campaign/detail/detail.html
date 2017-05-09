@@ -70,23 +70,27 @@
     <h3>Trend Graph</h3>
     <div class="row">
       <div class="col-sm-2">
-        <select class="form-control">
-          <option>Impression</option>
+        <select class="form-control"
+          ng-model="$ctrl.metrics.trend[0]"
+          ng-options="item as item.label for item in $ctrl.metricFilter('trend', 1)">
         </select>
       </div>
       <div class="col-sm-2">
-        <select class="form-control">
-          <option>Amount Spent</option>
+        <select class="form-control"
+          ng-model="$ctrl.metrics.trend[1]"
+          ng-options="item as item.label for item in $ctrl.metricFilter('trend', 0)">
         </select>
       </div>
     </div>
     <br>
-    <canvas class="chart-bar"
-      chart-data="$ctrl.trendChart.data"
-      chart-labels="$ctrl.trendChart.labels"
-      chart-colors="$ctrl.trendChart.colors"
-      chart-dataset-override="$ctrl.trendChart.override"
-      chart-options="$ctrl.trendChart.options"></canvas>
+    <div style="height: 350px;">
+      <canvas class="chart-bar"
+        chart-data="$ctrl.trendChart.data"
+        chart-labels="$ctrl.trendChart.labels"
+        chart-colors="$ctrl.trendChart.colors"
+        chart-dataset-override="$ctrl.trendChart.override"
+        chart-options="$ctrl.trendChart.options"></canvas>
+    </div>
   </div>
 </div>
 

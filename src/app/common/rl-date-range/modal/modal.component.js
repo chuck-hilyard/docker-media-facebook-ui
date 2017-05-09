@@ -51,7 +51,7 @@ class Controller {
       }
     }
     return '';
-    
+
   }
 
   getRangeName() {

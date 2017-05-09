@@ -9,10 +9,7 @@ export default class Service {
     let config = {
       params: params
     };
-    this.$http.get(`/campaign/${mcid}/trend-data`, config)
-      .then((resonse) => {
-        console.log('get trend data', resonse);
-      });
+    return this.$http.get(`/campaign/${mcid}/trend-data`, config);
   }
 
 }

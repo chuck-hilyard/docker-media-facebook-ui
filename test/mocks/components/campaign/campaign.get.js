@@ -1,4 +1,3 @@
-import angular from 'angular';
 import ngMockE2E from 'angular-mocks/ngMockE2E';
 
 
