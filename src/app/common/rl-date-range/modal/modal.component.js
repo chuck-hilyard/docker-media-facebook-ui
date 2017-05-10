@@ -16,16 +16,12 @@ class Controller {
     this.ranges = angular.copy(this.resolve.ranges);
     this.options = {
       start: {
-        customClass: (data) => {
-          return this.customClass(data);
-        },
+        customClass: (data) => this.customClass(data),
         maxDate: this.range.end,
         showWeeks: false
       },
       end: {
-        customClass: (data) => {
-          return this.customClass(data);
-        },
+        customClass: (data) => this.customClass(data),
         minDate: this.range.start,
         maxDate: new Date(),
         showWeeks: false

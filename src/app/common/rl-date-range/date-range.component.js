@@ -50,7 +50,6 @@ export default {
   template: Template,
   controller: Controller,
   bindings: {
-    callback: '&',
     cycles: '<'
   }
 };

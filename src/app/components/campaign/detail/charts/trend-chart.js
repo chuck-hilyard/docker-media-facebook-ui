@@ -21,7 +21,7 @@ export default class TrendChart {
   setLabels(data) {
     return data.map((item) => {
       let parts = item.date.split('-');
-      return this.$filter('date')(new Date(parts[0], (parts[1] - 1), parts[2]), 'MMM dd')
+      return this.$filter('date')(new Date(parts[0], (parts[1] - 1), parts[2]), 'MMM dd');
     });
   }
 
@@ -40,9 +40,7 @@ export default class TrendChart {
       switch(metric.format) {
       case 'currency':
         axis.ticks = {
-          callback: (dataLabel) => {
-            return this.$filter('currency')(dataLabel);
-          }
+          callback: (dataLabel) => this.$filter('currency')(dataLabel)
         };
         break;
       }

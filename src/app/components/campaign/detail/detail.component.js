@@ -29,9 +29,9 @@ class Controller {
     this.campaign = this.campaignRequest.data.campaign;
     this.getTrendData();
 
-    this.$scope.$watchCollection(() => this.metrics.trend, () => {
+    this.$scope.$watch(() => this.metrics.trend, () => {
       this.getTrendData();
-    });
+    }, true);
   }
 
   getTrendData() {
