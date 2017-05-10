@@ -1,3 +1,25 @@
+@import 'variables';
+
 div {
   position: relative;
+}
+
+.row-striped {
+  background-color: $rl-bright-white;
+}
+
+.padding-top {
+  padding-top: ($grid-gutter-width / 2);
+}
+
+.padding-top-lg {
+  padding-top: $grid-gutter-width;
+}
+
+.padding-bottom {
+  padding-bottom: ($grid-gutter-width / 2);
+}
+
+.padding-bottom-lg {
+  padding-bottom: $grid-gutter-width;
 }

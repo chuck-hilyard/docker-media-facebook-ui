@@ -6,64 +6,146 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row row-striped">
   <div class="col-xs-12">
-     <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title">Overview</h3>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-sm-2">
-            <div class="panel panel-default">
-              <div class="panel-body text-center">
-                <h2>$2.93</h2>
-                CPM
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="panel panel-default">
-              <div class="panel-body text-center">
-                <h2>83%</h2>
-                Utilization
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="panel panel-default">
-              <div class="panel-body text-center">
-                <h2>3.93%</h2>
-                CTR
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="panel panel-default">
-              <div class="panel-body text-center">
-                <h2>$5.56</h2>
-                $/Click
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="panel panel-default">
-              <div class="panel-body text-center">
-                <h2>##</h2>
-                Frequency
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="panel panel-default">
-              <div class="panel-body text-center">
-                <h2>#</h2>
-                Relevance Score
-              </div>
-            </div>
+
+    <h3>Overview</h3>
+
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <h2>$2.93</h2>
+            CPM
           </div>
         </div>
       </div>
+      <div class="col-sm-2">
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <h2>83%</h2>
+            Utilization
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <h2>3.93%</h2>
+            CTR
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <h2>$5.56</h2>
+            $/Click
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <h2>##</h2>
+            Frequency
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <h2>#</h2>
+            Relevance Score
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="row padding-top padding-bottom-lg">
+  <div class="col-xs-12">
+    <h3>Trend Graph</h3>
+    <div class="row">
+      <div class="col-sm-2">
+        <select class="form-control"
+          ng-model="$ctrl.metrics.trend[0]"
+          ng-options="item as item.label for item in $ctrl.metricFilter('trend', 1)">
+        </select>
+      </div>
+      <div class="col-sm-2">
+        <select class="form-control"
+          ng-model="$ctrl.metrics.trend[1]"
+          ng-options="item as item.label for item in $ctrl.metricFilter('trend', 0)">
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="trend-chart">
+      <canvas class="chart-bar"
+        chart-data="$ctrl.trendChart.data"
+        chart-labels="$ctrl.trendChart.labels"
+        chart-colors="$ctrl.trendChart.colors"
+        chart-dataset-override="$ctrl.trendChart.override"
+        chart-options="$ctrl.trendChart.options"></canvas>
+    </div>
+  </div>
+</div>
+
+<div class="row row-striped padding-top-lg padding-bottom">
+  <div class="col-sm-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Demographics</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-2 col-xs-6 text-center gender-label">
+            <span class="fa fa-5x fa-female"></span>
+            <h2>34&#37;</h2>
+            <h5>16,143</h5>
+          </div>
+          <div class="col-md-2 col-md-push-8 col-xs-6 text-center gender-label">
+            <span class="fa fa-5x fa-male"></span>
+            <h2>60&#37;</h2>
+            <h5>30,421</h5>
+          </div>
+          <div class="col-md-8 col-md-pull-2 demographic-chart">
+            <canvas class="chart-horizontal-bar"
+              chart-data="$ctrl.demographicChart.data"
+              chart-labels="$ctrl.demographicChart.labels"
+              chart-dataset-override="$ctrl.demographicChart.override"
+              chart-options="$ctrl.demographicChart.options">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Mobile vs. Desktop</h3>
+      </div>
+      <div class="panel-body device-chart">
+        <canvas class="chart-doughnut"
+          chart-data="$ctrl.deviceChart.data"
+          chart-labels="$ctrl.deviceChart.labels"
+          chart-colors="$ctrl.deviceChart.colors"
+          chart-dataset-override="$ctrl.deviceChart.override"
+          chart-options="$ctrl.deviceChart.options">
+        </canvas>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="label in $ctrl.deviceChart.labels">
+          <b class="pull-right">{{$ctrl.deviceChart.data[$index]}}&#37;</b>
+          <span class="fa fa-circle" ng-style="{'color': $ctrl.deviceChart.colors[$index]}"></span>
+          {{label}}:
+        </li>
+      </ul>
+
     </div>
   </div>
 </div>

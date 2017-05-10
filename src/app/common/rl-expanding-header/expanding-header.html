@@ -1,96 +1,42 @@
 <div class="rl-expanding-header" ng-class="{'rl-expanding-header--open': $ctrl.open}">
 
   <div class="row">
-    <div class="col-sm-8">
-      <h1><b>Campaign:</b> {{$ctrl.data.campaign.name}}</h1>
-    </div>
-    <div class="col-sm-4">
-      <rl-date-range class="pull-right"></rl-date-range>
+    <div class="col-xs-12">
+      <h5 ng-if="$ctrl.data.subTitle">
+        {{$ctrl.data.subType}}:
+        <a ui-sref="{{$ctrl.data.subLink}}">
+          {{$ctrl.data.subTitle}}
+        </a>
+      </h5>
+      <h5 ng-if="!$ctrl.data.subTitle">&nbsp;</h5>
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>
+        <b ng-if="$ctrl.data.type">{{$ctrl.data.type}}:</b>
+        {{$ctrl.data.title}}
+      </h1>
+    </div>
+    <div class="col-sm-4" ng-transclude>
+    </div>
+  </div>
+
+
   <div class="row collapse" uib-collapse="!$ctrl.open">
-    <div class="col-sm-4">
-      <h3>Advertiser</h3>
+    <div class="col-sm-4" ng-repeat="col in $ctrl.data.columns">
+      <h3>{{col.title}}</h3>
       <table class="table table-condensed">
         <tbody>
-          <tr>
-            <th>Advertiser Name:</th>
+          <tr ng-repeat="row in col.rows">
+            <th>{{row.name}}</th>
             <td>
-              <a ui-sref="advertiser.detail({maid: $ctrl.data.advertiser.maid})">{{$ctrl.data.advertiser.name}}</a>
+              <a ng-if="row.link" ui-sref="{{row.link}}">
+                {{row.value}}
+              </a>
+              <span ng-if="!row.link">{{row.value}}</span>
             </td>
-          </tr>
-          <tr>
-            <th>Master Advertiser ID:</th>
-            <td>{{$ctrl.data.advertiser.maid}}</td>
-          </tr>
-          <tr>
-            <th>Current Advertiser ID:</th>
-            <td>{{$ctrl.data.advertiser.caid}}</td>
-          </tr>
-          <tr>
-            <th>Advertiser Business:</th>
-            <td>{{$ctrl.data.advertiser.business}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-sm-4">
-      <h3>Campaign</h3>
-      <table class="table table-condensed">
-        <tbody>
-          <tr>
-            <th>Master Campaign ID:</th>
-            <td>{{$ctrl.data.campaign.mcid}}</td>
-          </tr>
-          <tr>
-            <th>Current Campaign ID:</th>
-            <td>{{$ctrl.data.campaign.ccid}}</td>
-          </tr>
-          <tr>
-            <th>Offer Name:</th>
-            <td>{{$ctrl.data.campaign.offerName}}</td>
-          </tr>
-          <tr>
-            <th>Offer ID:</th>
-            <td>{{$ctrl.data.campaign.offerId}}</td>
-          </tr>
-          <tr>
-            <th>Business Category:</th>
-            <td>{{$ctrl.data.campaign.category}}</td>
-          </tr>
-          <tr>
-            <th>Business Sub Category:</th>
-            <td>{{$ctrl.data.campaign.subCategory}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-sm-4">
-      <h3>Order Information</h3>
-      <table class="table table-condensed">
-        <tbody>
-          <tr>
-            <th>Order ID:</th>
-            <td>
-              <a ui-sref="offer.detail({oid: $ctrl.data.offer.oid})">{{$ctrl.data.offer.oid}}</a>
-            </td>
-          </tr>
-          <tr>
-            <th>Payment Type:</th>
-            <td>{{$ctrl.data.offer.payment}}</td>
-          </tr>
-          <tr>
-            <th>Current Budget:</th>
-            <td>{{$ctrl.data.offer.budget}}</td>
-          </tr>
-          <tr>
-            <th>Current Cycle:</th>
-            <td>{{$ctrl.data.offer.cycle}}</td>
-          </tr>
-          <tr>
-            <th>Auto Renew Type:</th>
-            <td>{{$ctrl.data.offer.renew}}</td>
           </tr>
         </tbody>
       </table>

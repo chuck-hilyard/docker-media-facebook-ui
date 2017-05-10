@@ -1,0 +1,35 @@
+.impression-chart {
+  height: 300px;
+}
+
+.gender-label {
+  padding: 60px 0;
+
+  h2 {
+    margin-bottom: 0;
+  }
+
+  h5 {
+    margin: 0;
+  }
+
+  .fa-female {
+    color: #faa967;
+  }
+
+  .fa-male {
+    color: #f67002;
+  }
+}
+
+.demographic-chart {
+  height: 275px;
+}
+
+.device-chart {
+  min-height: 225px;
+}
+
+.trend-chart {
+  height: 350px;
+}

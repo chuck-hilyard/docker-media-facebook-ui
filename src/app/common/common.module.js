@@ -5,7 +5,7 @@ import sidebar from './rl-sidebar/sidebar.module';
 import footer from './rl-footer/footer.module';
 import expandingHeader from './rl-expanding-header/expanding-header.module';
 import languageSelect from './rl-language-select/language-select.module';
-import fpoService from './fpo-service/fpo-service.module';
+import session from './session/session.module';
 
 
 export default angular
@@ -17,6 +17,6 @@ export default angular
     footer,
     expandingHeader,
     languageSelect,
-    fpoService
+    session
   ])
   .name;

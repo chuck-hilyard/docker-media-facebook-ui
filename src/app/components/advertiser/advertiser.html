@@ -1,0 +1,9 @@
+<div class="rl-container">
+  <rl-sidebar links="$ctrl.sidebar.links"></rl-sidebar>
+  <div class="rl-content">
+    <rl-expanding-header data="$ctrl.header">
+      <rl-date-range class="pull-right" ranges="$ctrl.dateRanges"></rl-date-range>
+    </rl-expanding-header>
+    <div class="rl-expading-header__body" ui-view></div>
+  </div>
+</div>

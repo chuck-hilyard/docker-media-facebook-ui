@@ -16,9 +16,7 @@ export default angular
         url: '/campaign/:mcid',
         component: 'campaign',
         resolve: {
-          campaign: ($http, $stateParams) => {
-            return $http.get(`/campaign/${$stateParams.mcid}`);
-          }
+          campaignRequest: ($http, $stateParams) => $http.get(`/campaign/${$stateParams.mcid}`)
         }
       });
   })

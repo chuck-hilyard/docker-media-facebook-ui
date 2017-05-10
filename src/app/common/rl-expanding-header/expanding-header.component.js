@@ -15,6 +15,7 @@ class Controller {
 export default {
   template: Template,
   controller: Controller,
+  transclude: true,
   bindings: {
     data: '<'
   }

@@ -2,12 +2,7 @@
 
 .rl-date-range-modal {
   .col-list-ranges {
-    margin-top: -($grid-gutter-width / 2);
-    margin-bottom: -($grid-gutter-width / 2);
-    padding: ($grid-gutter-width / 2) 0 0 0 ;
-    border-right: solid 1px $border-color;
-
-    a {
+    li {
       display: block;
       padding: 5px ($grid-gutter-width / 2);
       color: $text-color;
@@ -24,10 +19,22 @@
 
   .datepicker {
     display: inline-block;
-    margin-top: $grid-gutter-width;
 
     div:focus {
       outline: 0;
     }
+  }
+
+  .bookend span {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    background-color: $rl-primary-color;
+    border-radius: 9px;
+    color: $text-color;
+  }
+
+  .modal-footer span {
+    margin-right: ($grid-gutter-width / 2);
   }
 }

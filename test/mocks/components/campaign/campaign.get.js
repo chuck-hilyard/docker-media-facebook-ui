@@ -1,4 +1,3 @@
-import angular from 'angular';
 import ngMockE2E from 'angular-mocks/ngMockE2E';
 
 
@@ -10,11 +9,11 @@ export default angular
     'ngInject';
 
     $httpBackend
-      .when('GET', /\/campaign\/123456/)
+      .when('GET', /\/campaign\/123456$/)
       .respond({
         advertiser: {
           name: 'JJ\'s Plumbing',
-          maid: 23456,
+          maid: 123456,
           caid: 56978,
           business: 14785
         },
@@ -25,10 +24,29 @@ export default angular
           offerName: 'Search Engine Marketing',
           offerId: 1873,
           category: 'Home & Home Improvement',
-          subCategory: 'Plumbing'
+          subCategory: 'Plumbing',
+          cycles: [
+            {
+              start: new Date(2017, 4, 1),
+              end: new Date(),
+            },
+            {
+              start: new Date(2017, 3, 1),
+              end: new Date(2017, 4, 1)
+            },
+            {
+              start: new Date(2017, 2, 1),
+              end: new Date(2017, 3, 1)
+            },
+            {
+              start: new Date(2017, 1, 1),
+              end: new Date(2017, 2, 1)
+            }
+          ]
+
         },
-        offer: {
-          oid: 63258,
+        order: {
+          oid: 123456,
           payment: 'Credit Card',
           budget: 1500,
           cycle: '7 of 9',

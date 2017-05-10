@@ -2,22 +2,26 @@ import Template from './date-range.html';
 
 
 class Controller {
-  constructor($uibModal) {
+  constructor(DateRangeService, Session, $uibModal) {
     'ngInject';
+    this.service = DateRangeService;
+    this.session = Session;
     this.$uibModal = $uibModal;
   }
 
   $onInit() {
-    this.range = {
-      name: 'This Cycle',
-      start: this.getStartDate(),
-      end: new Date()
-    };
-  }
-
-  getStartDate() {
-    let date = new Date();
-    return date.setDate(date.getDate() - 21);
+    this.dateRanges = angular.copy(this.service.ranges);
+    if(angular.isDefined(this.cycles)) {
+      let thisCycle = angular.copy(this.cycles[0]);
+      thisCycle.name = 'This Cycle';
+      let lastCycle = angular.copy(this.cycles[1]);
+      lastCycle.name = 'Last Cycle';
+      this.dateRanges.unshift(thisCycle, lastCycle);
+      this.session.dateRange = angular.copy(this.dateRanges[1]);
+    }
+    else {
+      this.session.dateRange = angular.copy(this.dateRanges[2]);
+    }
   }
 
   dateModal() {
@@ -25,19 +29,15 @@ class Controller {
       component: 'rlDateRangeModal',
       size: 'lg',
       resolve: {
-        start: () => {
-          return this.range.start;
-        },
-        end: () => {
-          return this.range.end;
-        }
+        cycles: () => this.cycles,
+        range: () => this.session.dateRange,
+        ranges: () => this.dateRanges
       }
     });
 
     instance.result
       .then((response) => {
-        this.range.start = angular.copy(response.start);
-        this.range.end = angular.copy(response.end);
+        this.session.dateRange = angular.copy(response.range);
       })
       .catch(() => {
         // Prevent unhandled rejection error
@@ -50,6 +50,6 @@ export default {
   template: Template,
   controller: Controller,
   bindings: {
-    data: '<'
+    cycles: '<'
   }
 };
