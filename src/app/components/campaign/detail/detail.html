@@ -86,12 +86,7 @@
     </div>
     <br>
     <div class="trend-chart">
-      <canvas class="chart-bar"
-        chart-data="$ctrl.trendChart.data"
-        chart-labels="$ctrl.trendChart.labels"
-        chart-colors="$ctrl.trendChart.colors"
-        chart-dataset-override="$ctrl.trendChart.override"
-        chart-options="$ctrl.trendChart.options"></canvas>
+      <rl-chart data="$ctrl.trendChart.chart"></rl-chart>
     </div>
     <table class="table table-trend-metrics">
       <tr>

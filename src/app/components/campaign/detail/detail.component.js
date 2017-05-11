@@ -37,7 +37,7 @@ class Controller {
     let params = this.getTrendParams();
     this.service.getTrendData(this.campaign.mcid, params)
       .then((response) => {
-        this.trendChart.build(response.data, this.metrics.trend);
+        this.trendChart.build('bar', response.data, this.metrics.trend);
       })
       .catch((error) => {
         throw new Error(JSON.stringify(error));

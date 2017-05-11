@@ -3,10 +3,7 @@ export default class Charts {
   constructor($filter) {
     // Chart-JS Attributes
     this.colors = [];
-    this.data = [];
-    this.labels = [];
-    this.options = {};
-    this.override = [];
+    this.chart = {};
 
     // Abstractions
     this.optionsAbstract = {
@@ -31,21 +28,19 @@ export default class Charts {
     };
   }
 
-  build(data, metrics) {
-    this.data = this.setData(data, metrics);
-    this.labels = this.setLabels(data);
-    this.options = this.setOptions(metrics);
-    this.override = this.setOverride(metrics);
+  build(type, data, metrics) {
+    let _this = this;
+    this.chart = {
+      type: type,
+      data: {
+        labels: _this.setLabels(data),
+        datasets: _this.setData(data, metrics)
+      },
+      options: _this.setOptions(metrics)
+    };
   }
 
-  setData(data, metrics) {
-    let output = [];
-    metrics.forEach((metric) => {
-      output.push(data.map((item) => item[metric.id]));
-    });
-    return output;
-  }
-
+  // Setters for build. Overwrite in child class.
   setLabels(data) {
     return data.map((item) => {
       let parts = item.date.split('-');
@@ -53,12 +48,12 @@ export default class Charts {
     });
   }
 
-  setOptions() {
-    return {};
+  setData() {
+    return [];
   }
 
-  setOverride() {
-    return [];
+  setOptions() {
+    return {};
   }
 
 }

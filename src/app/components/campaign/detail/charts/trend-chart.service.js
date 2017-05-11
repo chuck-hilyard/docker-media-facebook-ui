@@ -1,4 +1,4 @@
-import Chart from './charts.abstract';
+import Chart from '../../../../common/rl-chart/chart.abstract';
 
 export default class TrendChart extends Chart {
 
@@ -7,6 +7,32 @@ export default class TrendChart extends Chart {
     super();
     this.$filter = $filter;
     this.colors = ['#23a4a9', '#bdd964'];
+  }
+
+  setData(data, metrics) {
+    return [
+      {
+        backgroundColor: this.colors[0],
+        borderColor: this.colors[0],
+        borderWidth: 4,
+        data: data.map((item) => item[metrics[0].id]),
+        fill: false,
+        label: metrics[0].label,
+        lineTension: 0,
+        pointRadius: 0,
+        type: 'line',
+        yAxisID: 'left'
+      },
+      {
+        backgroundColor: this.colors[1],
+        borderColor: this.colors[1],
+        data: data.map((item) => item[metrics[1].id]),
+        hoverBackgroundColor: '#cae183',
+        hoverBorderColor: '#cae183',
+        label: metrics[1].label,
+        yAxisID: 'right'
+      }
+    ];
   }
 
   setOptions(metrics) {
@@ -32,27 +58,6 @@ export default class TrendChart extends Chart {
         yAxes: yAxes
       }
     });
-  }
-
-  setOverride(metrics) {
-    return [
-      {
-        borderWidth: 4,
-        fill: false,
-        label: metrics[0].label,
-        lineTension: 0,
-        pointRadius: 0,
-        type: 'line',
-        yAxisID: 'left'
-      },
-      {
-        backgroundColor: this.colors[1],
-        hoverBackgroundColor: '#cae183',
-        hoverBorderColor: '#cae183',
-        label: metrics[1].label,
-        yAxisID: 'right'
-      }
-    ];
   }
 
 }
