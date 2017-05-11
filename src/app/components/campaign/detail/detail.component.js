@@ -1,9 +1,8 @@
 import template from './detail.html';
-import TrendChart from './charts/trend-chart';
 
 class Controller {
 
-  constructor($filter, $http, $scope, CampaignDetailService, Session) {
+  constructor($filter, $http, $scope, CampaignDetailService, CampaignTrendChart, Session) {
     'ngInject';
     // Anuglar
     this.$filter = $filter;
@@ -15,7 +14,7 @@ class Controller {
     this.session = Session;
     this.service = CampaignDetailService;
 
-    this.trendChart = {};
+    this.trendChart = CampaignTrendChart;
 
     // FPO RANDOM CHART DATA
     // TODO: REPLACE
@@ -29,7 +28,7 @@ class Controller {
     this.campaign = this.campaignRequest.data.campaign;
     this.getTrendData();
 
-    this.$scope.$watch(() => this.metrics.trend, () => {
+    this.$scope.$watch(() => this.session.dateRange, () => {
       this.getTrendData();
     }, true);
   }
@@ -38,7 +37,7 @@ class Controller {
     let params = this.getTrendParams();
     this.service.getTrendData(this.campaign.mcid, params)
       .then((response) => {
-        this.trendChart = new TrendChart(response.data, this.metrics.trend, this.$filter);
+        this.trendChart.build(response.data, this.metrics.trend);
       })
       .catch((error) => {
         throw new Error(JSON.stringify(error));
@@ -85,6 +84,10 @@ class Controller {
     ];
     return {
       options: options,
+      demographics: [
+        options.find((item) => item.id === 'impressions'),
+        options.find((item) => item.id === 'spend')
+      ],
       trend: [
         options.find((item) => item.id === 'impressions'),
         options.find((item) => item.id === 'spend')
@@ -116,29 +119,51 @@ class Controller {
 
   setDemographicChart() {
     let chart = this.demographicChart;
-    let maleColor = '#f67002';
-    let femaleColor = '#faa967';
 
-    chart.data = [ [], [] ];
+    chart.colors = {
+      metric1: {
+        male: '#23a4a9',
+        female: '#7bc8cb'
+      },
+      metric2: {
+        male: '#bdd964',
+        female: '#d7e8a2'
+      }
+    };
+    chart.data = [ [], [], [], [] ];
     chart.labels = ['13-17', '18-24', '24-34', '35-44', '45-54', '55-64', '65+'];
 
     for(let i = 1; i <= 7; i++) {
       chart.data[0].push(this.randomNumber(500));
-      chart.data[1].push(this.randomNumber(500) * -1);
+      chart.data[1].push(this.randomNumber(500) );
+      chart.data[2].push(this.randomNumber(500));
+      chart.data[3].push(this.randomNumber(500));
     }
 
     chart.override = [
       {
-        label: 'Male',
-        stack: 'gender',
-        backgroundColor: maleColor,
-        borderColor: maleColor
+        label: 'Male Impressions',
+        backgroundColor: chart.colors.metric1.male,
+        borderColor: chart.colors.metric1.male,
+        stack: 'stack 0'
       },
       {
-        label: 'Female',
-        stack: 'gender',
-        backgroundColor: femaleColor,
-        borderColor: femaleColor
+        label: 'Female Impressions',
+        backgroundColor: chart.colors.metric1.female,
+        borderColor: chart.colors.metric1.female,
+        stack: 'stack 0'
+      },
+      {
+        label: 'Male Spend',
+        backgroundColor: chart.colors.metric2.male,
+        borderColor: chart.colors.metric2.male,
+        stack: 'stack 1'
+      },
+      {
+        label: 'Female Spend',
+        backgroundColor: chart.colors.metric2.female,
+        borderColor: chart.colors.metric2.female,
+        stack: 'stack 1'
       }
     ];
 
@@ -146,48 +171,29 @@ class Controller {
       responsive: true,
       maintainAspectRatio: false,
       scales: {
-        xAxes: [{
-          stacked: true,
-          gridLines: {
-            drawBorder: false
-          },
-          ticks: {
-            callback: (dataLabel) => {
-              return dataLabel < 0 ? dataLabel * -1 : dataLabel;
+        xAxes: [
+          {
+            gridLines: {
+              display: false,
             }
           }
-        }],
-        yAxes: [{
-          stacked: true,
-          gridLines: {
-            display: false
+        ],
+        yAxes: [
+          {
+            gridLines: {
+              drawBorder: false,
+              drawTicks: false
+            }
           }
-        }]
-      },
-      tooltips: {
-        enabled: true,
-        mode: 'single',
-        callbacks: {
-
-          label: (tooltipItem, data) => {
-            let index = tooltipItem.index;
-            let male = data.datasets[0].data[index];
-            let female = data.datasets[1].data[index] * -1;
-            return [
-              `Male: ${male}`,
-              `Female: ${female}`
-            ];
-          }
-        }
+        ]
       }
-
     };
   }
 
   setDeviceChart() {
     let chart = this.deviceChart;
-    let mobileColor = '#f67002';
-    let desktopColor = '#faa967';
+    let mobileColor = '#23a4a9';
+    let desktopColor = '#7bc8cb';
 
     let totalCount = 100;
     let desktopCount = this.randomNumber(totalCount);

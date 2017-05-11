@@ -47,7 +47,7 @@
       <div class="col-sm-2">
         <div class="panel panel-default">
           <div class="panel-body text-center">
-            <h2>##</h2>
+            <h2>4</h2>
             Frequency
           </div>
         </div>
@@ -55,7 +55,7 @@
       <div class="col-sm-2">
         <div class="panel panel-default">
           <div class="panel-body text-center">
-            <h2>#</h2>
+            <h2>7</h2>
             Relevance Score
           </div>
         </div>
@@ -72,12 +72,14 @@
       <div class="col-sm-2">
         <select class="form-control"
           ng-model="$ctrl.metrics.trend[0]"
+          ng-change="$ctrl.getTrendData()"
           ng-options="item as item.label for item in $ctrl.metricFilter('trend', 1)">
         </select>
       </div>
       <div class="col-sm-2">
         <select class="form-control"
           ng-model="$ctrl.metrics.trend[1]"
+          ng-change="$ctrl.getTrendData()"
           ng-options="item as item.label for item in $ctrl.metricFilter('trend', 0)">
         </select>
       </div>
@@ -91,34 +93,93 @@
         chart-dataset-override="$ctrl.trendChart.override"
         chart-options="$ctrl.trendChart.options"></canvas>
     </div>
+    <table class="table table-trend-metrics">
+      <tr>
+        <td ng-repeat="trend in $ctrl.metrics.trend">
+          <span class="fa fa-circle" ng-style="{'color': $ctrl.trendChart.colors[$index]}"></span>
+          {{trend.label}}:
+          <b>100,000</b>
+        </td>
+      </tr>
+    </table>
   </div>
 </div>
 
 <div class="row row-striped padding-top-lg padding-bottom">
   <div class="col-sm-9">
     <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Demographics</h3>
+      <div class="panel-heading panel-heading--form">
+        <div class="row">
+          <div class="col-sm-8">
+            <h3 class="panel-title">Age &amp; Gender</h3>
+          </div>
+          <div class="col-sm-2">
+            <select class="form-control input-sm"
+              ng-model="$ctrl.metrics.demographics[0]"
+              ng-options="item as item.label for item in $ctrl.metricFilter('demographics', 1)">
+            </select>
+          </div>
+          <div class="col-sm-2">
+            <select class="form-control input-sm"
+              ng-model="$ctrl.metrics.demographics[1]"
+              ng-options="item as item.label for item in $ctrl.metricFilter('demographics', 0)">
+            </select>
+          </div>
+        </div>
       </div>
       <div class="panel-body">
         <div class="row">
-          <div class="col-md-2 col-xs-6 text-center gender-label">
-            <span class="fa fa-5x fa-female"></span>
-            <h2>34&#37;</h2>
-            <h5>16,143</h5>
+          <div class="col-md-2 gender-label">
+            <div class="text-center">
+              <span class="fa fa-5x fa-female"></span>
+            </div>
+            <p>
+              <span class="fa fa-circle" ng-style="{'color': $ctrl.demographicChart.colors.metric1.female}"></span>
+              {{$ctrl.metrics.demographics[0].label}}:
+              <span class="pull-right">
+                <b>17&#37;</b>
+                (7,777)
+              </span>
+            </p>
+            <p>
+              <span class="fa fa-circle" ng-style="{'color': $ctrl.demographicChart.colors.metric2.female}"></span>
+              {{$ctrl.metrics.demographics[1].label}}:
+              <span class="pull-right">
+                <b>33&#37;</b>
+                (22,222)
+              </span>
+            </p>
           </div>
-          <div class="col-md-2 col-md-push-8 col-xs-6 text-center gender-label">
-            <span class="fa fa-5x fa-male"></span>
-            <h2>60&#37;</h2>
-            <h5>30,421</h5>
+          <div class="col-md-8">
+            <div class="demographic-chart">
+              <canvas class="chart-bar"
+                chart-data="$ctrl.demographicChart.data"
+                chart-labels="$ctrl.demographicChart.labels"
+                chart-dataset-override="$ctrl.demographicChart.override"
+                chart-options="$ctrl.demographicChart.options">
+              </canvas>
+            </div>
           </div>
-          <div class="col-md-8 col-md-pull-2 demographic-chart">
-            <canvas class="chart-horizontal-bar"
-              chart-data="$ctrl.demographicChart.data"
-              chart-labels="$ctrl.demographicChart.labels"
-              chart-dataset-override="$ctrl.demographicChart.override"
-              chart-options="$ctrl.demographicChart.options">
-            </canvas>
+          <div class="col-md-2 gender-label">
+            <div class="text-center">
+              <span class="fa fa-5x fa-male"></span>
+            </div>
+            <p>
+              <span class="fa fa-circle" ng-style="{'color': $ctrl.demographicChart.colors.metric1.male}"></span>
+              {{$ctrl.metrics.demographics[0].label}}:
+              <span class="pull-right">
+                <b>40&#37;</b>
+                (55,555)
+              </span>
+            </p>
+            <p>
+              <span class="fa fa-circle" ng-style="{'color': $ctrl.demographicChart.colors.metric2.male}"></span>
+              {{$ctrl.metrics.demographics[1].label}}:
+              <span class="pull-right">
+                <b>60&#37;</b>
+                (88,999)
+              </span>
+            </p>
           </div>
         </div>
       </div>
@@ -126,7 +187,7 @@
   </div>
   <div class="col-sm-3">
     <div class="panel panel-default">
-      <div class="panel-heading">
+      <div class="panel-heading panel-heading--form">
         <h3 class="panel-title">Mobile vs. Desktop</h3>
       </div>
       <div class="panel-body device-chart">

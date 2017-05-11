@@ -7,3 +7,15 @@
 .text-info {
   color: $rl-medium-blue-gray;
 }
+
+h3.panel-title {
+  font-size: $font-size-h3;
+}
+
+.panel-heading--form {
+  height: 50px;
+
+  h3 {
+    line-height: 30px;
+  }
+}
