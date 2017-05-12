@@ -14,7 +14,7 @@ class Controller {
     this.session = Session;
     this.service = CampaignDetailService;
 
-    this.trendChart = CampaignTrendChart;
+    this.trendChart = angular.copy(CampaignTrendChart);
 
     // FPO RANDOM CHART DATA
     // TODO: REPLACE
@@ -130,64 +130,53 @@ class Controller {
         female: '#d7e8a2'
       }
     };
-    chart.data = [ [], [], [], [] ];
-    chart.labels = ['13-17', '18-24', '24-34', '35-44', '45-54', '55-64', '65+'];
 
-    for(let i = 1; i <= 7; i++) {
-      chart.data[0].push(this.randomNumber(500));
-      chart.data[1].push(this.randomNumber(500) );
-      chart.data[2].push(this.randomNumber(500));
-      chart.data[3].push(this.randomNumber(500));
-    }
-
-    chart.override = [
-      {
-        label: 'Male Impressions',
-        backgroundColor: chart.colors.metric1.male,
-        borderColor: chart.colors.metric1.male,
-        stack: 'stack 0'
-      },
-      {
-        label: 'Female Impressions',
-        backgroundColor: chart.colors.metric1.female,
-        borderColor: chart.colors.metric1.female,
-        stack: 'stack 0'
-      },
-      {
-        label: 'Male Spend',
-        backgroundColor: chart.colors.metric2.male,
-        borderColor: chart.colors.metric2.male,
-        stack: 'stack 1'
-      },
-      {
-        label: 'Female Spend',
-        backgroundColor: chart.colors.metric2.female,
-        borderColor: chart.colors.metric2.female,
-        stack: 'stack 1'
-      }
-    ];
-
-    chart.options = {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        xAxes: [
+    chart.chart = {
+      type: 'horizontalBar',
+      data: {
+        labels: ['13-17', '18-24', '24-34', '35-44', '45-54', '55-64', '65+'],
+        datasets: [
           {
-            gridLines: {
-              display: false,
-            }
-          }
-        ],
-        yAxes: [
+            label: 'Male Impressions',
+            data: [],
+            backgroundColor: chart.colors.metric1.male,
+            borderColor: chart.colors.metric1.male,
+            stack: 'impressions'
+          },
           {
-            gridLines: {
-              drawBorder: false,
-              drawTicks: false
-            }
+            label: 'Female Impressions',
+            data: [],
+            backgroundColor: chart.colors.metric1.female,
+            borderColor: chart.colors.metric1.female,
+            stack: 'impressions'
           }
         ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [
+            {
+              stacked: true
+            }
+          ],
+          yAxes: [
+            {
+              stacked: true
+            }
+          ]
+        }
       }
     };
+
+    for(let i = 1; i <= 8; i++) {
+      chart.chart.data.datasets[0].data.push(this.randomNumber(500));
+      chart.chart.data.datasets[1].data.push(this.randomNumber(500) * -1);
+    }
   }
 
   setDeviceChart() {
@@ -198,36 +187,43 @@ class Controller {
     let totalCount = 100;
     let desktopCount = this.randomNumber(totalCount);
 
-    chart.data = [
-      desktopCount,
-      (totalCount - desktopCount)
-    ];
-    chart.labels = ['Desktop', 'Mobile'];
-
-    chart.colors = [desktopColor, mobileColor];
-
-    chart.override = {
-      hoverBackgroundColor: chart.colors
-    };
-
-    chart.options = {
-      responsive: true,
-      maintainAspectRatio: false,
-      cutoutPercentage: 80,
-      tooltips: {
-        enabled: false
+    chart.chart = {
+      type: 'pie',
+      data: {
+        labels: [
+          'Desktop',
+          'Mobile'
+        ],
+        datasets: [{
+          data: [
+            desktopCount,
+            (totalCount - desktopCount)
+          ],
+          backgroundColor: [
+            desktopColor,
+            mobileColor
+          ]
+        }]
       },
-      elements: {
-        center: {
-          line1: '46,555',
-          line1Padding: 50,
-          line2: 'Impressions',
-          line2Padding: 50,
-          fontFamily: '\'Roboto\', sans-serif',
-          fontColor: '#394354'
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        cutoutPercentage: 80,
+        elements: {
+          center: {
+            line1: '46,555',
+            line1Padding: 50,
+            line2: 'Impressions',
+            line2Padding: 50,
+            fontColor: '#394354'
+          }
         }
       }
     };
+
   }
 
 }

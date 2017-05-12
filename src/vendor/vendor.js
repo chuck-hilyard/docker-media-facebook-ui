@@ -5,6 +5,6 @@ import ngHttpAuth from 'angular-http-auth';
 import ngJwt from 'angular-jwt';
 import ngTranslate from 'angular-translate';
 import uiRouter from 'angular-ui-router';
-import chartJs from 'angular-chart.js';
+import Chart from 'chart.js';
 import chartjsCenterLabel from './chartjs-center-label/chartjs-center-label';
 import './vendor.scss';

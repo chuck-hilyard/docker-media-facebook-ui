@@ -1,39 +1,20 @@
 import Chart from 'chart.js';
 
-export default class rlChart {
-  constructor() {
-    'ngInject';
-    this.restrict = 'E';
-    this.template = '<canvas></canvas>';
-    this.replace = true;
-    this.scope = {
-      data: '<'
-    };
-  }
+function link(scope, element) {
+  scope.$watch('data', createChart, true);
 
-  link(scope, element) {
-    let _this = this;
-    scope.$watch('data', watchData, true);
-    function watchData(newValue, oldValue) {
-      if (_this.validateData(newValue, oldValue)) {
-        let ctx = element[0];
-        _this.createChart(ctx, newValue);
-      }
+  function createChart(data) {
+    if (!validateData(data)) {
+      return;
     }
-  }
-
-  createChart(ctx, data) {
-    if(this.chart) {
-      this.chart.destroy();
+    if (scope.chart) {
+      scope.chart.destroy();
     }
-    this.chart = new Chart(ctx, angular.copy(data));
+    scope.chart = new Chart(element[0], angular.copy(data));
   }
 
-  validateData(newValue, oldValue) {
+  function validateData(newValue) {
     if (typeof newValue !== 'object') {
-      return false;
-    }
-    if (JSON.stringify(newValue) === JSON.stringify(oldValue)) {
       return false;
     }
     if (!newValue.hasOwnProperty('type')) {
@@ -42,10 +23,20 @@ export default class rlChart {
     if (!newValue.hasOwnProperty('data')) {
       return false;
     }
-    if (!newValue.hasOwnProperty('options')) {
-      return false;
-    }
     return true;
   }
+}
 
-};
+export default function rlChart() {
+
+  return {
+    restrict: 'E',
+    template: '<canvas></canvas>',
+    replace: true,
+    scope: {
+      data: '<'
+    },
+    link: link
+  };
+
+}

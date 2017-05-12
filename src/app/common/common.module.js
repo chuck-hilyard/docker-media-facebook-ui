@@ -7,6 +7,7 @@ import expandingHeader from './rl-expanding-header/expanding-header.module';
 import chart from './rl-chart/chart.module';
 import languageSelect from './rl-language-select/language-select.module';
 import session from './session/session.module';
+import colors from './rl-colors/colors.module';
 
 
 export default angular
@@ -19,6 +20,7 @@ export default angular
     expandingHeader,
     chart,
     languageSelect,
-    session
+    session,
+    colors
   ])
   .name;
