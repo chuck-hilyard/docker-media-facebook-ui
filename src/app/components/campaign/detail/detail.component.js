@@ -88,6 +88,9 @@ class Controller {
         options.find((item) => item.id === 'impressions'),
         options.find((item) => item.id === 'spend')
       ],
+      devices: [
+        options.find((item) => item.id === 'impressions')
+      ],
       trend: [
         options.find((item) => item.id === 'impressions'),
         options.find((item) => item.id === 'spend')
@@ -123,15 +126,15 @@ class Controller {
     chart.colors = {
       metric1: {
         male: '#23a4a9',
-        female: '#7bc8cb'
+        female: '#bdd964'
       },
       metric2: {
-        male: '#bdd964',
-        female: '#d7e8a2'
+        male: '#2b97ce',
+        female: '#a26da9'
       }
     };
 
-    chart.chart = {
+    chart.metric1 = {
       type: 'horizontalBar',
       data: {
         labels: ['13-17', '18-24', '24-34', '35-44', '45-54', '55-64', '65+'],
@@ -141,14 +144,12 @@ class Controller {
             data: [],
             backgroundColor: chart.colors.metric1.male,
             borderColor: chart.colors.metric1.male,
-            stack: 'impressions'
           },
           {
             label: 'Female Impressions',
             data: [],
             backgroundColor: chart.colors.metric1.female,
             borderColor: chart.colors.metric1.female,
-            stack: 'impressions'
           }
         ]
       },
@@ -161,21 +162,102 @@ class Controller {
         scales: {
           xAxes: [
             {
-              stacked: true
+              gridLines: {
+                drawBorder: false
+              },
+              ticks: {
+                callback: (value) => (value * -1)
+              }
             }
           ],
           yAxes: [
             {
-              stacked: true
+              gridLines: {
+                drawBorder: false,
+                display: false
+              },
+              ticks: {
+                fontColor: '#fff'
+              }
             }
           ]
+        },
+        tooltips: {
+          callbacks: {
+            label: (tooltipItem, data) => {
+              let di = tooltipItem.datasetIndex;
+              return data.datasets[di].label + ': ' + tooltipItem.xLabel * -1;
+            }
+          }
+        }
+      }
+    };
+
+    chart.metric2 = {
+      type: 'horizontalBar',
+      data: {
+        labels: ['13-17', '18-24', '24-34', '35-44', '45-54', '55-64', '65+'],
+        datasets: [
+          {
+            label: 'Male Spend',
+            data: [],
+            backgroundColor: chart.colors.metric2.male,
+            borderColor: chart.colors.metric2.male,
+          },
+          {
+            label: 'Female Spend',
+            data: [],
+            backgroundColor: chart.colors.metric2.female,
+            borderColor: chart.colors.metric2.female,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [
+            {
+              gridLines: {
+                drawBorder: false
+              },
+              ticks: {
+                callback: (value) => this.$filter('currency')(value)
+              }
+            }
+          ],
+          yAxes: [
+            {
+              gridLines: {
+                display: false
+              },
+              ticks: {
+                padding: 30,
+
+              }
+              
+            }
+          ]
+        },
+        tooltips: {
+          callbacks: {
+            label: (tooltipItem, data) => {
+              let di = tooltipItem.datasetIndex;
+              return data.datasets[di].label + ': ' + this.$filter('currency')(tooltipItem.xLabel);
+            }
+          }
         }
       }
     };
 
     for(let i = 1; i <= 8; i++) {
-      chart.chart.data.datasets[0].data.push(this.randomNumber(500));
-      chart.chart.data.datasets[1].data.push(this.randomNumber(500) * -1);
+      chart.metric1.data.datasets[0].data.push(this.randomNumber(500) * -1);
+      chart.metric1.data.datasets[1].data.push(this.randomNumber(500) * -1);
+      chart.metric2.data.datasets[0].data.push(this.randomNumber(20));
+      chart.metric2.data.datasets[1].data.push(this.randomNumber(20));
     }
   }
 

@@ -105,7 +105,7 @@
     <div class="panel panel-default">
       <div class="panel-heading panel-heading--form">
         <div class="row">
-          <div class="col-sm-10">
+          <div class="col-sm-8">
             <h3 class="panel-title">Age &amp; Gender</h3>
           </div>
           <div class="col-sm-2">
@@ -114,35 +114,73 @@
               ng-options="item as item.label for item in $ctrl.metricFilter('demographics', 1)">
             </select>
           </div>
+          <div class="col-sm-2">
+            <select class="form-control input-sm"
+              ng-model="$ctrl.metrics.demographics[1]"
+              ng-options="item as item.label for item in $ctrl.metricFilter('demographics', 0)">
+            </select>
+          </div>
         </div>
       </div>
       <div class="panel-body">
         <div class="row">
-          <div class="col-md-2 gender-label text-center">
-            <span class="fa fa-5x fa-female" ng-style="{'color': $ctrl.demographicChart.colors.metric1.female}"></span>
-            <p>
-              {{$ctrl.metrics.demographics[0].label}}<br>
-              <span>
-                <b>17&#37;</b>
-                (7,777)
-              </span>
-            </p>
+
+          <div class="col-md-2 text-center">
+            <br><br>
+            <h2>{{$ctrl.metrics.demographics[0].label}}</h2>
+            <br>
+            <h4>
+              <span class="fa fa-circle" ng-style="{'color': $ctrl.demographicChart.colors.metric1.male}"></span>
+              Male
+            </h4>
+            <h5>
+              <b>62&#37;</b>
+              (7,777)
+            </h5>
+            <h4>
+              <span class="fa fa-circle" ng-style="{'color': $ctrl.demographicChart.colors.metric1.female}"></span>
+              Female
+            </h4>
+            <h5>
+              <b>35&#37;</b>
+              (3,777)
+            </h5>
           </div>
-          <div class="col-md-8">
+
+          <div class="col-md-4">
             <div class="demographic-chart">
-              <rl-chart data="$ctrl.demographicChart.chart"></rl-chart>
+              <rl-chart data="$ctrl.demographicChart.metric1"></rl-chart>
             </div>
           </div>
-          <div class="col-md-2 gender-label text-center">
-            <span class="fa fa-5x fa-male" ng-style="{'color': $ctrl.demographicChart.colors.metric1.male}"></span>
-            <p>
-              {{$ctrl.metrics.demographics[0].label}}<br>
-              <span>
-                <b>40&#37;</b>
-                (55,555)
-              </span>
-            </p>
+
+          <div class="col-md-4">
+            <div class="demographic-chart">
+              <rl-chart data="$ctrl.demographicChart.metric2"></rl-chart>
+            </div>
           </div>
+
+          <div class="col-md-2 text-center">
+            <br><br>
+            <h2>{{$ctrl.metrics.demographics[1].label}}</h2>
+            <br>
+            <h4>
+              <span class="fa fa-male" ng-style="{'color': $ctrl.demographicChart.colors.metric2.male}"></span>
+              Male
+            </h4>
+            <h5>
+              <b>62&#37;</b>
+              (7,777)
+            </h5>
+            <h4>
+              <span class="fa fa-female" ng-style="{'color': $ctrl.demographicChart.colors.metric2.female}"></span>
+              Female
+            </h4>
+            <h5>
+              <b>35&#37;</b>
+              (3,777)
+            </h5>
+          </div>
+
         </div>
       </div>
     </div>
@@ -150,7 +188,17 @@
   <div class="col-sm-3">
     <div class="panel panel-default">
       <div class="panel-heading panel-heading--form">
-        <h3 class="panel-title">Mobile vs. Desktop</h3>
+        <div class="row">
+          <div class="col-md-9">
+            <h3 class="panel-title">Mobile vs. Desktop</h3>
+          </div>
+          <div class="col-md-3">
+            <select class="form-control input-sm"
+              ng-model="$ctrl.metrics.devices[0]"
+              ng-options="item as item.label for item in $ctrl.metrics.options">
+            </select>
+          </div>
+        </div>
       </div>
       <div class="panel-body text-center">
         <div class="device-chart">
