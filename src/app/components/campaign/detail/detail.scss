@@ -1,35 +1,26 @@
-.impression-chart {
-  height: 300px;
+@import './src/styles/variables';
+
+.trend-chart {
+  height: 350px;
+  margin-bottom: $grid-gutter-width;
 }
 
-.gender-label {
-  padding: 60px 0;
+.table-trend-metrics {
+  td {
+    width: 50%;
 
-  h2 {
-    margin-bottom: 0;
-  }
-
-  h5 {
-    margin: 0;
-  }
-
-  .fa-female {
-    color: #faa967;
-  }
-
-  .fa-male {
-    color: #f67002;
+    &:first-child {
+      text-align: right;
+    }
   }
 }
 
 .demographic-chart {
-  height: 275px;
+  height: 350px;
 }
 
 .device-chart {
-  min-height: 225px;
-}
-
-.trend-chart {
-  height: 350px;
+  display: inline-block;
+  width: 60%;
+  height: 263px;
 }
