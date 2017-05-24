@@ -11,7 +11,7 @@ RUN apt-get update; \
   apt-get install -y npm; \
   apt-get install -y default-jre
 
-EXPOSE 4000
+EXPOSE 8080
 
 CMD npm start; \
   npm run build; \
